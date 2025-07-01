@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.main-bodyy {
+  background-color: #192c63;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0
+}
+
+.wraper {
+  width: 80%;
+  margin: auto;
+}
+
+.nabar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.logo-text {
+  font-size: 2.5em;
+}
+
+.logo-text span {
+  color: rgb(10,165,165);
+  text-shadow : 1px 1px 3px white;
+}
+
+.nav-menuu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+}
+.nav-menu a {
+  text-decoration: none;
+  color: white;
+}
+
+.main-ctn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 4rem
+}
+
+
+.foto-container img {
+  margin-left: 8.5vw;
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.5s;
+}
+
+
+.boton {
+  background: #bb0b83;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.typingg {
+  overflow: hidden;
+  border-right: 2px white;
+  animation: typing 2s steps(25);
+}
+@keyframes typing {
+  to {
+    width: 100%
+  }
+}
+
+/*Agregamos*/
+.centered{
+  text-align: center;
+  margin-top: 2rem;
+}
+.misproyectos {
+  display: flex;
+  flex-direction: column
+}
+.grid-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  margin-top:  2rem
+}
+
+.projectcard {
+  background-color: #233a7a;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 300px
+}
+
+.img-top {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.enlaces {
+  display: flex;
+  justify-content: space-between
+}
+.contactoo{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+label{
+  color: black;
+}
+
+.formularioo {
+  width: 600px;
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.inpt {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.inptt {
+  height: 100px;
+  width: 100%;
+}
+.input{
+  height: 100px;
+  width: 100%;
+}
+
+.bt-submit {
+  background-color: blueviolet;
+  color: #fff;
+  padding: 0.75rem;
+  border : none;
+  cursor: pointer;
+}
+
+.footer-text{
+  text-align: center;
+}
+
+.footer-text2{
+  text-align: center;
+  
+}
+
+.redessociales {
+  display :flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+
+
+
