@@ -133,17 +133,35 @@ console.log(arraycitoMulti[1][0].nombre);
 
 
 // Metodos para arrays
-// Recorrer Arrays
 
 let nombres = ["Roberto", "Edenilson", "Mangandi", "Escobar"];
 
 // DAR VUELTA UN ARRAY
 let nombresAlReves = nombres.reverse();
 
-// Foreach
+// Recorrer Arrays
+// Foreach -> Recorre el array y nos deja  utilizar la posiciony el indice del array
 nombresAlReves.forEach((value, index) => {
   console.log(index);
   console.log(value);
+})
+
+
+// Foreach que reciba array completo
+
+let arrayNum = [1,2,3,4,5,6];
+
+arrayNum.forEach((value, index, array) => {
+  arrayNum.pop();
+    console.log(array);
+})
+arrayNum.forEach((value, index, array) => {
+  if(index+1 < array.length){
+    console.log(array[index+1]);
+    
+    if(array[index] < array[index+1])
+      console.log(value);
+  }
 })
 
 // Metodos Utiles
@@ -160,3 +178,53 @@ let numeritosPorDos = numeritos.map((value) => {
   return value * 2;
 })
 console.log(numeritosPorDos)
+
+
+// Filtrar la informacion
+// Filter -> filtramos la info y la retornamos en base a una condicion
+
+const usuarios = [
+{nombre: "Roberto", edad: 20}, 
+{ nombre: "Edenilson", edad: 28},
+{ nombre: "Mangandi", edad: 27}]
+
+// Array.filter( (apodoValorDeCadaPosicion ) => { return CONDICION A CUMPLIR })
+const mayoresDe20 = usuarios.filter( (value) => { return value.edad > 21})
+console.log(mayoresDe20);
+
+// Find => Buscamos y retornamos un solo dato
+
+const usuarioEdenilson = usuarios.find( usuario => usuario.nombre === "Edenilson");
+console.log(usuarioEdenilson);
+
+
+// Metodos OBLIGATORIOS para trabajar con un Array
+let array = [];
+// Agregar datos al array
+// AL FINAL
+array.push(2);
+
+// EN PRIMERA POSICION
+array.unshift(1);
+
+// Eliminar datos del array
+// AL FINAL
+array.pop();
+
+// AL PRINCIPIO
+array.shift();
+console.log(array)
+
+// Obtener el largo de un array
+let largor = array.length;
+console.log(largor)
+
+// Strings
+// La propiedad length sirve tambien para strings
+console.log("Hola Roberto ".length);
+
+// Metodo para eliminar los espacios al principio y al final
+let sinEspacios = "Hola Roberto ".trim();
+console.log(sinEspacios);
+console.log(sinEspacios.length);
+
