@@ -29,6 +29,11 @@ btnApretable.addEventListener('click', () => {
 
     let dato = prompt("Ingresa tu nombre porfa.")
     console.log(dato);
+
+    // Ejemplo de manipulacion en el DOM
+    elementoDOM.style.fontFamily = "sans-serif";
+    elementoDOM.style.marginLeft = " 2rem";
+    elementoDOM.style.color = " red";
 })
 
 // Metodo de JS
@@ -40,12 +45,21 @@ console.log(arraycito);
 // localStorage -> Almacenamiento local en el navegador del usuario
 // localStorage -> Esta diseñado para guardar OBJETOS
 localStorage.setItem('arraycito', JSON.stringify(arraycito));
+let data = localStorage.getItem('arraycito')
 
-console.log(localStorage.getItem('arraycito'))
+// Mostramos los datos del localStorage QUE SON UN STRING
+console.log(data);
+
+//Devolver la data a su tipo original
+let dataArray = JSON.parse(data)
+console.log(dataArray);
 
 
 btnArraycito.addEventListener('click', () => {
     console.log("Estoy bien");
     arraycito.push(4);
     console.log(arraycito);
+
+    localStorage.setItem('arraycito', JSON.stringify(arraycito));
+    console.log(localStorage.getItem('arraycito'));
 })
