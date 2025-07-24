@@ -24,8 +24,19 @@ function agregarCurso(evento) {
 
                 //Aumentar el precio
                 // Utilizar un metodo string que pueda quitar el primer caracter
-                cursoArr.precio += cursoArr.precio.substring(1);
-                return cursoArr;
+                //Metodos posibles = substring o slice
+                cursoArr.precio = cursoArr.precio.substring(1);
+
+                //transformamos el string a numero
+                //ParseInt o parseFloat
+                cursoArr.precio = parseFloat(cursoArr.precio);
+
+                //Aumentamos el precio
+                cursoArr.precio += cursoArr.precio
+                //Devolvemos el precio a su formato original
+                cursoArr.precio =`$ ${cursoArr.precio}`;
+
+                return;
             }
         })
     }else{
@@ -67,9 +78,23 @@ function pintarCarritoHTML(){
             <td>${curso.nombre}</td>
             <td>${curso.precio}</td>
             <td>${curso.cantidad}</td>
-            <td><a class="btn btn-danger">Eliminar</a></td>
+            <td><a class="btn btn-danger" onclick="eliminarCurso(${curso.id})">Eliminar</a></td>
         `
         contenedorCarrito.appendChild(fila);
     })
 }
-pintarCarritoHTML();
+
+function eliminarCurso(id){
+    console.log(id);
+
+    cursosCarrito.map( (curso) => {
+        //Si tiene cantidad mayor a 1 tiene que disminuir en 1
+
+        if(curso.id == id){
+            console.log(curso.id);
+            // Va a guardar los cursos que sean diferentes a ese ID
+            cursosCarrito = cursosCarrito.filter( curso => curso.id != id);
+        }
+    })
+    pintarCarritoHTML();
+}
