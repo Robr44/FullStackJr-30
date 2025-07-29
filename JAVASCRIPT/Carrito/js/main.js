@@ -31,12 +31,13 @@ function agregarCurso(evento) {
                 cursoArr.precio = parseFloat(cursoArr.precio);
 
                 // Obtener precio de un curso
-                let precioUno = curso.precio.substring(1);
-                precioUno = parseFloat(precioUno);
+                let precioCurso = curso.precio.substring(1);
+                precioCurso = parseFloat(precioCurso);
 
                 //Aumentamos el precio
-                cursoArr.precio += precioUno
-                //Devolvemos el precio a su formato original
+                cursoArr.precio += precioCurso
+
+                //Devolvemos el precio a su formato con el caracter
                 cursoArr.precio = `$${cursoArr.precio.toFixed(2)}`;
 
                 return;
@@ -95,21 +96,23 @@ function eliminarCurso(id) {
         if (curso.id == id) {
             console.log(curso.id);
 
-            // Revisar si hay mas de uno
+            // Revisar si hay mas de uno curso
             if (curso.cantidad > 1) {
+            
                 curso.cantidad -= 1;
 
+                // Modificamos el precio de acuerdo va disminuyendo los cursos en cantidad
+                
                 // Extraer número del precio y quitar el primer caracter y convertir a float
                 let precioTotal = parseFloat(curso.precio.substring(1));
                 // Calcular precio de un curso
-                let precioUno = precioTotal / (curso.cantidad + 1); // usamos +1 porque ya restamos 1 a la cantidad
-                // Restar el precio unitario al precio total
+                let precioUno = precioTotal / (curso.cantidad + 1); // Le sumaremos uno porque habiamos restado un curso
+                // Restar el precio de un curso al precio total
                 precioTotal -= precioUno;
-                // Volver a formatear el precio con $
+                // Volver a formatear el precio con el caracter $
                 curso.precio = `$${precioTotal.toFixed(2)}`;
             } else {
-                // Si la cantidad es 1, eliminar el curso del carrito
-                cursosCarrito = cursosCarrito.filter(curso => curso.id != id);
+                    cursosCarrito = cursosCarrito.filter(curso => curso.id != id);
             }
         }
     });
