@@ -106,12 +106,13 @@ function eliminarCurso(id) {
                 // Extraer número del precio y quitar el primer caracter y convertir a float
                 let precioTotal = parseFloat(curso.precio.substring(1));
                 // Calcular precio de un curso
-                let precioUno = precioTotal / (curso.cantidad + 1); // Le sumaremos uno porque habiamos restado un curso
+                let precioUnoCurso = precioTotal / (curso.cantidad + 1); // Le sumaremos uno porque habiamos restado un curso
                 // Restar el precio de un curso al precio total
-                precioTotal -= precioUno;
-                // Volver a formatear el precio con el caracter $
+                precioTotal -= precioUnoCurso;
+                // Volver a agregar el precio con el caracter 
                 curso.precio = `$${precioTotal.toFixed(2)}`;
             } else {
+                // Va a guardar los cursos que sean diferentes a ese ID
                     cursosCarrito = cursosCarrito.filter(curso => curso.id != id);
             }
         }
