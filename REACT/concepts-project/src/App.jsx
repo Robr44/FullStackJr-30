@@ -1,17 +1,16 @@
 import './App.css'
-import Saludo from './components/Saludo'
-
+import Saludo from './components/Saludo.jsx'
 
 function App() {
 
+
   return (
-    <> {/* Primer fragment -> NO DIBUJA UN CONTENEDOR EN EL HTML */}
+    <>{ /* este es el fragment-> no dibuja un contenedor en el html */}
+      <h1>Holiwis</h1>
+      { /* este es el primer componente */}
+      <Saludo nombre='Roberto' apellido='Mangandi' />
+      <Saludo nombre='Edenilson' apellido='Escobar' />
 
-      <h1>Holaa</h1>
-
-      {/* Primer componente */}
-      <Saludo name='Roberto'/>
-      <Saludo name='Edenilson'/>
     </>
   )
 }
