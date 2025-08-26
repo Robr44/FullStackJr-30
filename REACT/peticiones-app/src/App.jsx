@@ -1,6 +1,7 @@
 
 import './App.css'
 import { ListCharacters } from './components/ListCharacters'
+import { FavoritesDataProvider } from './contexts/FavoritesContext'
 
 // Asincronismo -> Manejar codigo que tarda en completarse como solicitudes a un servidor o lecturas
 // de archivos, sin bloquear el resto del programa
@@ -10,8 +11,12 @@ function App() {
 
   return (
     <>
-      <h1>Holitas</h1>
+    <FavoritesDataProvider>
+      
       <ListCharacters/>
+
+    </FavoritesDataProvider>
+      <h1>Holitas</h1>
     </>
   )
 }

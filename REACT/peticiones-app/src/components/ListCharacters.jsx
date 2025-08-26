@@ -1,12 +1,21 @@
 // rafc -> snippet para crear el componente funcional con flecha
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CardCharacter } from "./CardCharacter";
+import { FavoritesContext } from "../contexts/FavoritesContext";
 
 export const ListCharacters = () => {
 
     //Siempre que necesite una caja paa GUARDAR ALGO voy a hacer un ESTADO
     const [listPjs, setListPjs] = useState([]);
+
+    // Utilizamos el useContext -> Hook para utilizar el contexto previamente creado
+    // Sintaxis para cuando tenemos 1 SOLO VALOR EN EL CONTEXTO
+    //const valorContext = useContext(FavoritesContext)
+    //console.log(valorContext);
+
+    const {favorites, setFavorites} = useContext(FavoritesContext)
+    //console.log(favorites);
 
     // Las funciones adentro de un componente declarenlas con el camelCase
   const peticionApi = () => {
@@ -54,9 +63,12 @@ export const ListCharacters = () => {
         {listPjs.map( (personaje) => {
           return <section key={personaje.id} className="col-md-3" >
             <CardCharacter 
+            id={personaje.id}
             name={personaje.name}
             image={personaje.image}
             status={personaje.status}
+            listFavorites={favorites}
+            changeFavorites={setFavorites}
             />
           </section>
          })}
