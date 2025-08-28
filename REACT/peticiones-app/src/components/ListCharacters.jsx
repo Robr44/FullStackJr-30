@@ -29,7 +29,7 @@ export const ListCharacters = () => {
     }) 
     .catch(error => console.error(error))
   }
-  console.log(listPjs);
+  //console.log(listPjs);
 /*
    //Async function peticionApiAA
   const peticionApiAA = async () => {
