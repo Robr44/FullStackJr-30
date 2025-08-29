@@ -1,7 +1,9 @@
 
 import './App.css'
-import { ListCharacters } from './components/ListCharacters'
+import { ListCharacters } from './views/listCharacters/ListCharacters'
 import { FavoritesDataProvider } from './contexts/FavoritesContext'
+import {BrowserRouter,Link, Route, Routes} from 'react-router'
+import { SessionView } from './views/session/SessionView'
 
 // Asincronismo -> Manejar codigo que tarda en completarse como solicitudes a un servidor o lecturas
 // de archivos, sin bloquear el resto del programa
@@ -11,12 +13,17 @@ function App() {
 
   return (
     <>
-    <FavoritesDataProvider>
-      
-      <ListCharacters/>
+     <FavoritesDataProvider>
+      {/* Activamos React Router */ }
+      <BrowserRouter>
+      <Link to="/session" className="btn btn-success ms-2">Register</Link>
+        <Routes>
+          <Route path='/' element={<ListCharacters />}/>
+          <Route path='/session' element={<SessionView />}/>
+        </Routes>
+      </BrowserRouter>
 
     </FavoritesDataProvider>
-      <h1>Holitas</h1>
     </>
   )
 }

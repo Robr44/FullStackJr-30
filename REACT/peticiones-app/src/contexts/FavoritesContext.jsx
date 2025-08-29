@@ -1,17 +1,19 @@
 /* Vamos a declarar 2 cosas a la vez */
-import { createContext, useState } from 'react';
 
-// Crear el contexto
+import { createContext, useState } from "react";
+
+//Crear el contexto 
+// eslint-disable-next-line react-refresh/only-export-components
 export const FavoritesContext = createContext();
 
 // Proveedor de la informacion del contexto
-// Weaper -> Contiene otros componentes -> {children}
+// Wrapper -> Contiene otros componentes -> {children}
 export const FavoritesDataProvider = ({children}) => {
+    //Crear el estado de los favoritos
+    const [favorites,setFavorites] = useState([]);
 
-    // crear el estado de los favoritos
-    const [favorites, setFavorites] = useState([]);
     return(
-        <FavoritesContext.Provider value={{favorites, setFavorites}} >
+        <FavoritesContext.Provider value={{favorites,setFavorites}} >
             {children}
         </FavoritesContext.Provider>
     )
