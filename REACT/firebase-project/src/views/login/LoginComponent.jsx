@@ -1,55 +1,57 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../repositories/config";
+import { Link, useNavigate } from "react-router-dom";
 
-function LoginComponent() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+// validación con Yup
+const schema = yup.object({
+  email: yup.string().email("Formato incorrecto").required("Email requerido"),
+  password: yup.string().required("Contraseña requerida").min(8, "Mínimo 8 caracteres")
+});
+
+export const LoginComponent = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
+  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Lógica de autenticación aquí
-    navigate('/dashboard')
-  }
+  // al enviar el formulario para iniciar sesión se ejecuta esta función
+  const onSubmit = data => {
+    setLoginError("");
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then(() => navigate("/products"))
+      .catch(() => setLoginError("Usuario o contraseña incorrecta"));
+  };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-4">
-          <div className="card">
-            <div className="card-body">
-              <h3 className="card-title mb-4 text-center">Iniciar Sesión</h3>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Correo electrónico</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Contraseña</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <button type="submit" className="btn btn-primary w-100">Ingresar</button>
-              </form>
-            </div>
+    <section className="d-flex align-items-center justify-content-center vh-100" style={{ backgroundColor: "#1e1e2f" }}>
+      <div className="card p-4" style={{ width: 350, backgroundColor: "#2c2c3e", color: "#fff", borderRadius: 10 }}>
+        <h3 className="text-center mb-4">Sign in</h3>
+        {/* Formulario para Login */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-3">
+            <label>Email:</label>
+            <input type="email" className="form-control" {...register("email")} />
+            <p className="text-danger">{errors.email?.message}</p>
           </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
-export default LoginComponent
+          <div className="mb-3">
+            <label>Contraseña:</label>
+            <input type="password" className="form-control" {...register("password")} />
+            <p className="text-danger">{errors.password?.message}</p>
+          </div>
+
+          {loginError && <p className="text-danger text-center">{loginError}</p>}
+          {/* Botón Login */}
+          <button type="submit" className="btn btn-primary w-100">Entrar</button>
+        </form>
+        {/* Ir  a Registrarse */}
+        <p className="mt-3 text-center">
+          ¿No tienes cuenta? <Link to="/register" style={{ color: "#4ea8de" }}>Regístrate aquí</Link>
+        </p>
+      </div>
+    </section>
+  );
+};
