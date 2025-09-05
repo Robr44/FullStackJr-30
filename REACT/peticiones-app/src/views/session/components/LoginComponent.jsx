@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import * as yup from 'yup'
 import { yupResolver } from "@hookform/resolvers/yup"
-import { signInWithEmailAndPassword} from 'firebase/auth'
+import {signInWithEmailAndPassword} from 'firebase/auth'
 import { auth } from "../../../repositories/config"
 
 const schema = yup.object({
@@ -10,11 +10,11 @@ const schema = yup.object({
 })
 
 export const LoginComponent = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm({
-      resolver: yupResolver(schema)
+    const {register,handleSubmit,formState: {errors}} = useForm({
+        resolver: yupResolver(schema)
     });
 
-     const onSubmitForm = (data) => {
+    const onSubmitForm = (data) => {
 
         signInWithEmailAndPassword(auth, data.email, data.password)
   .then((userCredential) => {
@@ -31,9 +31,15 @@ export const LoginComponent = () => {
     console.error(errorMessage);
     
   });
-}
+
+    }
+
   return (
-     <section>LoginComponent
+    <section className="row justify-content-center">
+    <div className="col-6">
+    <div className="card">
+    <div className="card-body">
+      <h3 className="card-title text-center">Sign in</h3>
     <form onSubmit={handleSubmit(onSubmitForm)}>
       <label className="form-label" >Email: </label>
       <input type="email" className="form-control" name="input_email" {...register('email')} />
@@ -41,8 +47,11 @@ export const LoginComponent = () => {
       <label className="form-label">Password: </label>
       <input type="password" className="form-control" name="input_password" {...register('password')}/>
       <p className='text-danger'>{errors.password && errors.password.message }</p>
-      <button type="submit">Send</button>
+      <button type="submit" className="btn btn-primary">Send</button>
     </form>
+    </div>
+    </div>
+    </div>
     </section>
   )
 }

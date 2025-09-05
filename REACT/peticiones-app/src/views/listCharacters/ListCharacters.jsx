@@ -63,7 +63,7 @@ export const ListCharacters = () => {
         {/* Recorrer el array para mostrar los datos -> Mapear los datos para pintarlos*/}
 
         {listPjs.map( (personaje) => {
-          return <section key={personaje.id} className="col-md-3" >
+          return <section key={personaje.id} className="col-md-3 col-sm-12" >
             <CardCharacter 
             id={personaje.id}
             name={personaje.name}
