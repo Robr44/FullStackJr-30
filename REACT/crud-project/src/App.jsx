@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './App.css'
 const API_URL = "http://localhost:3001/api/tasks/"
 const POST_URL = "http://localhost:3001/api/tasks"
 const PUT_URL = "http://localhost:3001/api/tasks/"
