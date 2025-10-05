@@ -69,6 +69,7 @@ if(isset($_POST['nombre_aerolinea'], $_POST['cantidad_aviones'], $_POST['tipo_ae
 
         <label for="nombre_aerolinea">Tipo de Aerolinea: </label>
         <select type="text" name="tipo_aerolinea">
+            <option value="">---Selecciona un Tipo de Vuelo---</option>
             <option value="Privado">Privado</option>
             <option value="Comercial">Comercial</option>
             <option value="Carga">Carga</option>
